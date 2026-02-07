@@ -9,6 +9,7 @@ namespace Panda
         public static class Adventure
         {
             public static readonly Data Level1 = new Data("Level_1", "Adventure");
+            public static readonly Data Dialogue = new Data("Dialogue", "UI");
         }
 
         public struct Data : IEquatable<Data>

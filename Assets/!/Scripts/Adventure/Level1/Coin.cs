@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Panda.Adventure
+namespace Panda.Adventure.Level1
 {
     public class Coin : MonoBehaviour
     {

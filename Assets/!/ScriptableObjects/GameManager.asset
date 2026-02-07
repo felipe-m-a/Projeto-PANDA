@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2c3aadb6c66cc4991b727d5cb1be62, type: 3}
-  m_Name: SceneStackManager
-  m_EditorClassIdentifier: Assembly-CSharp::Panda.SceneStackManager
+  m_Script: {fileID: 11500000, guid: 35701467fbab0e74ea5f8d83bef9aff8, type: 3}
+  m_Name: GameManager
+  m_EditorClassIdentifier: Assembly-CSharp::Panda.GameManager
+  gameplayActionMap: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
