@@ -12,10 +12,8 @@ namespace Panda.Adventure.Level1
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<Player>(out var player))
-            {
                 // levelData.collectedCoins.Add(_id);
                 gameObject.SetActive(false);
-            }
         }
     }
 }

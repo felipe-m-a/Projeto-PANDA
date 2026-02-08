@@ -1,7 +1,4 @@
-using System;
-using Panda.Adventure.InteractionSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 namespace Panda
@@ -9,20 +6,18 @@ namespace Panda
     [CreateAssetMenu(fileName = "GameManager", menuName = "Scriptable Objects/GameManager")]
     public class GameManager : ScriptableObject
     {
-        [SerializeField] private InputActionAsset gameplayActionMap;
+        public InputReader inputReader;
 
         public void LoadAdventureLevel(string scene)
         {
             SceneManager.LoadScene(scene);
-            gameplayActionMap.FindActionMap("Adventure").Enable();
+            inputReader.EnableAdventureInput();
         }
 
         private void OnEnable()
         {
             EventBus.OnDialogueStartEventRaised += HandleDialogueStartEvent;
             EventBus.OnDialogueEndEventRaised += HandleDialogueEndEvent;
-            
-            gameplayActionMap.FindActionMap("Dialogue").Disable();
         }
 
         private void OnDisable()
@@ -33,14 +28,12 @@ namespace Panda
 
         private void HandleDialogueStartEvent()
         {
-            gameplayActionMap.FindActionMap("Adventure").Disable();
-            gameplayActionMap.FindActionMap("Dialogue").Enable();
+            inputReader.EnableDialogueInput();
         }
 
         private void HandleDialogueEndEvent()
         {
-            gameplayActionMap.FindActionMap("Adventure").Enable();
-            gameplayActionMap.FindActionMap("Dialogue").Disable();
+            inputReader.EnableAdventureInput();
         }
 
 

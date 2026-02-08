@@ -13,12 +13,10 @@ namespace Panda.MainMenu
 
         public void DisableAdventureInputActions()
         {
-            
         }
 
         public void EnableAdventureInputActions()
         {
-            
         }
     }
 }

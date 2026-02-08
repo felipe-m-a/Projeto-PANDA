@@ -1,16 +1,14 @@
 using Panda.Adventure.InteractionSystem;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Panda.Adventure
 {
     public class Player : MonoBehaviour
     {
-        public float moveSpeed = 3f;
-        public float rotationSpeed = 8f;
+        [SerializeField] private float moveSpeed = 3f;
+        [SerializeField] private float rotationSpeed = 8f;
 
-        public InputActionReference movementAction;
-        public InputActionReference interactAction;
+        [SerializeField] private InputReader inputReader;
 
         private Animator _animator;
         private CharacterController _characterController;
@@ -33,12 +31,6 @@ namespace Panda.Adventure
         {
             _isWalkingHash = Animator.StringToHash("IsWalking");
             _interactHash = Animator.StringToHash("Interact");
-
-            movementAction.action.performed += OnMovementInput;
-            movementAction.action.started += OnMovementInput;
-            movementAction.action.canceled += OnMovementInput;
-
-            interactAction.action.started += OnInteractInput;
         }
 
         private void Update()
@@ -50,12 +42,20 @@ namespace Panda.Adventure
             _characterController.Move(_currentMovement * Time.deltaTime);
         }
 
-        private void OnMovementInput(InputAction.CallbackContext context)
+        private void OnMove(Vector2 input)
         {
-            var currentMovementInput = context.ReadValue<Vector2>();
-            _currentMovement.x = currentMovementInput.x * moveSpeed;
-            _currentMovement.z = currentMovementInput.y * moveSpeed;
-            _isTryingToMove = currentMovementInput != Vector2.zero;
+            _currentMovement.x = input.x * moveSpeed;
+            _currentMovement.z = input.y * moveSpeed;
+            _isTryingToMove = input != Vector2.zero;
+        }
+
+        private void OnInteract()
+        {
+            if (!_isTryingToMove && _interactor.focused != null)
+            {
+                _animator.SetTrigger(_interactHash);
+                _interactor.focused.Interact();
+            }
         }
 
         private void HandleAnimation()
@@ -89,13 +89,16 @@ namespace Panda.Adventure
                 _currentMovement.y += -9.8f;
         }
 
-        private void OnInteractInput(InputAction.CallbackContext context)
+        private void OnEnable()
         {
-            if (context.ReadValueAsButton() && !_isTryingToMove && _interactor.focused != null)
-            {
-                _animator.SetTrigger(_interactHash);
-                _interactor.focused.Interact();
-            }
+            inputReader.moveEvent += OnMove;
+            inputReader.interactEvent += OnInteract;
+        }
+
+        private void OnDisable()
+        {
+            inputReader.moveEvent -= OnMove;
+            inputReader.interactEvent -= OnInteract;
         }
     }
 }

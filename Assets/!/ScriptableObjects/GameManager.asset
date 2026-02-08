@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameManager
   m_EditorClassIdentifier: Assembly-CSharp::Panda.GameManager
   gameplayActionMap: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  inputReader: {fileID: 11400000, guid: 2b5dc5bfc554bdf4695632ec0b497847, type: 2}

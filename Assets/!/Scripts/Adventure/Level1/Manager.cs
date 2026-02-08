@@ -1,4 +1,3 @@
-using Panda.Adventure.InteractionSystem;
 using UnityEngine;
 
 namespace Panda.Adventure.Level1
@@ -7,5 +6,11 @@ namespace Panda.Adventure.Level1
     {
         [SerializeField] private GameManager gameManager;
         [SerializeField] private DialogueManager dialogueManager;
+
+        private void OnEnable()
+        {
+            // Para poder testar
+            if (Application.isEditor) gameManager.inputReader.EnableAdventureInput();
+        }
     }
 }

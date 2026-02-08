@@ -1,5 +1,4 @@
 using System;
-using Panda.Adventure.InteractionSystem;
 
 namespace Panda
 {

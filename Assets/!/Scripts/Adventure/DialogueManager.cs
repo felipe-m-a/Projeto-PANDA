@@ -1,8 +1,7 @@
-using System;
+using Panda.Adventure.InteractionSystem;
 using TMPro;
 using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Panda.Adventure
 {
@@ -11,12 +10,12 @@ namespace Panda.Adventure
         [SerializeField] private CinemachineCamera cinemachine;
         [SerializeField] private Canvas canvas;
         [SerializeField] private TMP_Text textMesh;
-        [SerializeField] private InputActionReference advanceAction;
+        [SerializeField] private InputReader inputReader;
 
-        private InteractionSystem.Dialogue _dialogue;
+        private Dialogue _dialogue;
         private int _lineIndex;
 
-        public void StartDialogue(InteractionSystem.Dialogue dialogue)
+        public void StartDialogue(Dialogue dialogue)
         {
             EventBus.RaiseDialogueStartEvent();
             cinemachine.Target.TrackingTarget = dialogue.Target;
@@ -51,17 +50,12 @@ namespace Panda.Adventure
         private void OnEnable()
         {
             canvas.enabled = false;
-            advanceAction.action.started += OnAdvanceInput;
+            inputReader.advanceDialogueEvent += AdvanceDialogue;
         }
 
         private void OnDisable()
         {
-            advanceAction.action.started -= OnAdvanceInput;
-        }
-
-        private void OnAdvanceInput(InputAction.CallbackContext context)
-        {
-            AdvanceDialogue();
+            inputReader.advanceDialogueEvent += AdvanceDialogue;
         }
     }
 }

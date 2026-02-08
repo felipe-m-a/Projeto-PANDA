@@ -49,7 +49,7 @@ MonoBehaviour:
   cinemachine: {fileID: 7113076950699975720}
   canvas: {fileID: 8283506831315525515}
   textMesh: {fileID: 7894417194613417030}
-  advanceAction: {fileID: 0}
+  inputReader: {fileID: 11400000, guid: 2b5dc5bfc554bdf4695632ec0b497847, type: 2}
 --- !u!1 &342144497858289770
 GameObject:
   m_ObjectHideFlags: 0

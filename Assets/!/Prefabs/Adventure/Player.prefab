@@ -138,7 +138,6 @@ MonoBehaviour:
   interactableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  focused: {fileID: 0}
 --- !u!114 &2824112675262820420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,5 +152,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Panda.Adventure.Player
   moveSpeed: 3
   rotationSpeed: 8
-  movementAction: {fileID: 0}
-  interactAction: {fileID: 0}
+  inputReader: {fileID: 11400000, guid: 2b5dc5bfc554bdf4695632ec0b497847, type: 2}
