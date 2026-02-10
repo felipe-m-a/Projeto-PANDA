@@ -6,11 +6,25 @@ namespace Panda.Adventure.Level1
     {
         [SerializeField] private GameManager gameManager;
         [SerializeField] private DialogueManager dialogueManager;
+        [SerializeField] private InputReader inputReader;
 
         private void OnEnable()
         {
-            // Para poder testar
-            if (Application.isEditor) gameManager.inputReader.EnableAdventureInput();
+            inputReader.EnableAdventureInput();
+
+            EventBus.MinigameTriggered += HandleMinigameTriggered;
+            EventBus.MinigameEnded += HandleMinigameEnded;
+        }
+
+        private void HandleMinigameTriggered(string scene)
+        {
+            inputReader.DisableAllInput();
+            StartCoroutine(gameManager.LoadMinigameRoutine(scene, true));
+        }
+
+        private void HandleMinigameEnded()
+        {
+            inputReader.EnableAdventureInput();
         }
     }
 }

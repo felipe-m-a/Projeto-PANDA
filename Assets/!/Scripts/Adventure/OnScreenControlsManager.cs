@@ -5,34 +5,50 @@ namespace Panda.Adventure
     [RequireComponent(typeof(Canvas))]
     public class OnScreenControlsManager : MonoBehaviour
     {
+        [SerializeField] private GameManager gameManager;
         private Canvas _canvas;
-        private bool _isShowingControls;
 
         private void OnEnable()
         {
             _canvas = GetComponent<Canvas>();
 
-            _isShowingControls = Application.isMobilePlatform || Application.isEditor;
-            _canvas.enabled = _isShowingControls;
+            _canvas.enabled = gameManager.isOnScreenControlsOn;
 
-            EventBus.OnDialogueStartEventRaised += HandleDialogueStartEvent;
-            EventBus.OnDialogueEndEventRaised += HandleDialogueEndEvent;
+            EventBus.DialogueStarted += HandleDialogueStarted;
+            EventBus.DialogueEnded += HandleDialogueEnded;
+
+            EventBus.MinigameStarted += HandleMinigameStarted;
+            EventBus.MinigameEnded += HandleMinigameEnded;
         }
+
 
         private void OnDisable()
         {
-            EventBus.OnDialogueStartEventRaised -= HandleDialogueStartEvent;
-            EventBus.OnDialogueEndEventRaised -= HandleDialogueEndEvent;
+            EventBus.DialogueStarted -= HandleDialogueStarted;
+            EventBus.DialogueEnded -= HandleDialogueEnded;
+
+            EventBus.MinigameStarted -= HandleMinigameStarted;
+            EventBus.MinigameEnded -= HandleMinigameEnded;
         }
 
-        private void HandleDialogueStartEvent()
+        private void HandleDialogueStarted()
         {
             _canvas.enabled = false;
         }
 
-        private void HandleDialogueEndEvent()
+        private void HandleDialogueEnded()
         {
-            _canvas.enabled = _isShowingControls;
+            _canvas.enabled = gameManager.isOnScreenControlsOn;
+        }
+
+        private void HandleMinigameStarted()
+        {
+            _canvas.enabled = false;
+        }
+
+        private void HandleMinigameEnded()
+        {
+            _canvas.enabled = gameManager.isOnScreenControlsOn;
         }
     }
 }

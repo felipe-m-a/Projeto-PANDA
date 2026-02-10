@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+using Panda.Minigames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,36 +9,34 @@ namespace Panda
     [CreateAssetMenu(fileName = "GameManager", menuName = "Scriptable Objects/GameManager")]
     public class GameManager : ScriptableObject
     {
-        public InputReader inputReader;
+        public bool isOnScreenControlsOn = true;
+        [Range(0, 2)] public int difficultyIndex = 1;
+        [SerializeField] private List<Settings> minigamesSettingsList;
 
-        public void LoadAdventureLevel(string scene)
+
+        public Settings SelectedMinigamesSettings => minigamesSettingsList[difficultyIndex];
+
+        public IEnumerator LoadAdventureLevel(string scene)
         {
-            SceneManager.LoadScene(scene);
-            inputReader.EnableAdventureInput();
+            yield return SceneManager.LoadSceneAsync(scene);
         }
 
-        private void OnEnable()
+        public IEnumerator LoadMinigameRoutine(string scene, bool onTop)
         {
-            EventBus.OnDialogueStartEventRaised += HandleDialogueStartEvent;
-            EventBus.OnDialogueEndEventRaised += HandleDialogueEndEvent;
+            yield return SceneManager.LoadSceneAsync(scene, onTop ? LoadSceneMode.Additive : LoadSceneMode.Single);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
         }
 
-        private void OnDisable()
+        public IEnumerator LoadMainMenuRoutine()
         {
-            EventBus.OnDialogueStartEventRaised -= HandleDialogueStartEvent;
-            EventBus.OnDialogueEndEventRaised -= HandleDialogueEndEvent;
+            yield return SceneManager.LoadSceneAsync(Scenes.MainMenu);
         }
 
-        private void HandleDialogueStartEvent()
+        public IEnumerator UnloadCurrentSceneRoutine()
         {
-            inputReader.EnableDialogueInput();
+            var currentScene = SceneManager.GetActiveScene();
+            yield return SceneManager.UnloadSceneAsync(currentScene);
         }
-
-        private void HandleDialogueEndEvent()
-        {
-            inputReader.EnableAdventureInput();
-        }
-
 
         public static class Scenes
         {

@@ -15,23 +15,33 @@ namespace Panda.Adventure
         private Dialogue _dialogue;
         private int _lineIndex;
 
-        public void StartDialogue(Dialogue dialogue)
+        private string _scheduledMinigame;
+
+        public void StartDialogue(Dialogue dialogue, string minigameScene = null)
         {
-            EventBus.RaiseDialogueStartEvent();
+            EventBus.RaiseDialogueStarted();
+            inputReader.EnableDialogueInput();
             cinemachine.Target.TrackingTarget = dialogue.Target;
             cinemachine.Priority = 10;
             canvas.enabled = true;
 
             _dialogue = dialogue;
+
+            _scheduledMinigame = minigameScene;
+
             AdvanceDialogue();
         }
+
 
         private void EndDialogue()
         {
             cinemachine.Priority = -10;
             canvas.enabled = false;
             _lineIndex = 0;
-            EventBus.RaiseDialogueEndEvent();
+            inputReader.EnableAdventureInput();
+
+            EventBus.RaiseDialogueEnded();
+            if (!string.IsNullOrEmpty(_scheduledMinigame)) EventBus.RaiseMinigameTriggered(_scheduledMinigame);
         }
 
         public void AdvanceDialogue()

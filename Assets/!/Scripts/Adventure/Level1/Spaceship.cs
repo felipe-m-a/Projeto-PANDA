@@ -7,6 +7,7 @@ namespace Panda.Adventure.Level1
     {
         [SerializeField] private Renderer interactableFocusIcon;
         [SerializeField] private DialogueManager dialogueManager;
+        [SerializeField] private StoryTracker storyTracker;
 
         public bool CanInteract()
         {
@@ -26,8 +27,17 @@ namespace Panda.Adventure.Level1
         public void Interact()
         {
             var dialogue = new Dialogue(transform);
-            dialogue.AddLine("Sua nave está quebrada! Você precisa de peças para consertá-la.");
-            dialogueManager.StartDialogue(dialogue);
+
+            if (!storyTracker.receivedParts)
+            {
+                dialogue.AddLine("Sua nave está quebrada! Você precisa de peças para consertá-la.");
+                dialogueManager.StartDialogue(dialogue);
+            }
+            else
+            {
+                dialogue.AddLine("Peças necessárias encontrados.\nIniciando conserto da nave.");
+                dialogueManager.StartDialogue(dialogue);
+            }
         }
     }
 }

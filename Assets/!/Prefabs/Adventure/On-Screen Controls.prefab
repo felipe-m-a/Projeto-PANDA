@@ -62,7 +62,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3671884154362867325
 MonoBehaviour:
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 557a4fadbcc4b4e4a9d3003798380422, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Panda.OnScreenControlsManager
+  gameManager: {fileID: 11400000, guid: 609314cd368da5642b30d12e72f8162d, type: 2}
 --- !u!1 &2456463407089336192
 GameObject:
   m_ObjectHideFlags: 0

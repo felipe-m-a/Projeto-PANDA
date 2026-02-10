@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Panda
+namespace Panda.Adventure
 {
-    [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
+    [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/Adventure/InputReader")]
     public class InputReader : ScriptableObject, GameInput.IAdventureActions, GameInput.IDialogueActions
     {
         // Adventure

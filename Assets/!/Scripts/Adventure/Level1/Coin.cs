@@ -4,6 +4,8 @@ namespace Panda.Adventure.Level1
 {
     public class Coin : MonoBehaviour
     {
+        [SerializeField] private StoryTracker storyTracker;
+
         private void Update()
         {
             transform.Rotate(0, 100 * Time.deltaTime, 0);
@@ -11,9 +13,9 @@ namespace Panda.Adventure.Level1
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<Player>(out var player))
-                // levelData.collectedCoins.Add(_id);
-                gameObject.SetActive(false);
+            if (other.GetComponent<Player>() is null) return;
+            storyTracker.collectedCoinsCount++;
+            gameObject.SetActive(false);
         }
     }
 }

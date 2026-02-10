@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/!/Scenes/Adventure/Level_1.unity
     guid: 612116ceff002244f991bce2f832ccc5
+  - enabled: 1
+    path: Assets/!/Scenes/Minigames/Memory.unity
+    guid: d4735e3db2167d649923d28b08ce0652
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

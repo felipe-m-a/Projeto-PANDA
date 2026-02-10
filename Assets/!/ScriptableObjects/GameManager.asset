@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35701467fbab0e74ea5f8d83bef9aff8, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: Assembly-CSharp::Panda.GameManager
-  gameplayActionMap: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  inputReader: {fileID: 11400000, guid: 2b5dc5bfc554bdf4695632ec0b497847, type: 2}
+  isOnScreenControlsOn: 1
+  difficultyIndex: 0
+  minigamesSettingsList:
+  - {fileID: 11400000, guid: 72dda75bb3100164e8da8edd7b1f54c9, type: 2}
+  - {fileID: 11400000, guid: 072dd395fd5699a4e8e8d1ed6d69249b, type: 2}
+  - {fileID: 11400000, guid: 95222eb326d2434449bf0144366eb077, type: 2}

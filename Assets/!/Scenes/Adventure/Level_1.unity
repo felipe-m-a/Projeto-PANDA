@@ -555,7 +555,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2060216463}
-  - {fileID: 3859836445512179179}
   - {fileID: 52837806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -611,6 +610,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427028219843242563, guid: f19915a885a72cc4981c83683fbaf9c9, type: 3}
+      propertyPath: storyTracker
+      value: 
+      objectReference: {fileID: 1394436471}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -668,6 +671,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427028219843242563, guid: f19915a885a72cc4981c83683fbaf9c9, type: 3}
+      propertyPath: storyTracker
+      value: 
+      objectReference: {fileID: 1394436471}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1061,6 +1068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394436470}
   - component: {fileID: 1394436469}
+  - component: {fileID: 1394436471}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Untagged
@@ -1082,6 +1090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Panda.Adventure.Level1.Manager
   gameManager: {fileID: 11400000, guid: 609314cd368da5642b30d12e72f8162d, type: 2}
   dialogueManager: {fileID: 1763087279}
+  inputReader: {fileID: 11400000, guid: 2b5dc5bfc554bdf4695632ec0b497847, type: 2}
 --- !u!4 &1394436470
 Transform:
   m_ObjectHideFlags: 0
@@ -1097,6 +1106,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 326931395}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1394436471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394436468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d233d4cc5cf4ed08f02a143455b8cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Panda.Adventure.Level1.StoryTracker
+  receivedQuest: 0
+  collectedCoinsCount: 0
+  receivedParts: 0
 --- !u!1 &1413402554 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2843079102891219644, guid: 16e1a6c7bcb40e0429cfc5f52382f4a5, type: 3}
@@ -1116,6 +1140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Panda.Adventure.Npc
   interactableFocusIcon: {fileID: 541390922}
   dialogueManager: {fileID: 1763087279}
+  storyTracker: {fileID: 1394436471}
 --- !u!1 &1421955001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Panda.Adventure.Spaceship
   interactableFocusIcon: {fileID: 741232541}
   dialogueManager: {fileID: 1763087279}
+  storyTracker: {fileID: 1394436471}
 --- !u!1001 &1230966890932111625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1521,7 +1547,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 750129418}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 337487325850183477, guid: 6cedaa591669c3146a08a4f32988cd6b, type: 3}
       propertyPath: m_Name
@@ -1572,11 +1598,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cedaa591669c3146a08a4f32988cd6b, type: 3}
---- !u!4 &3859836445512179179 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1145372549154045327, guid: 6cedaa591669c3146a08a4f32988cd6b, type: 3}
-  m_PrefabInstance: {fileID: 3859836445512179178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5108854990397397228
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1629,6 +1650,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427028219843242563, guid: f19915a885a72cc4981c83683fbaf9c9, type: 3}
+      propertyPath: storyTracker
+      value: 
+      objectReference: {fileID: 1394436471}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1704,6 +1729,7 @@ SceneRoots:
   - {fileID: 1421955002}
   - {fileID: 326931395}
   - {fileID: 140031677}
+  - {fileID: 3859836445512179178}
   - {fileID: 750129418}
   - {fileID: 1723281000}
   - {fileID: 1512528905348880939}
